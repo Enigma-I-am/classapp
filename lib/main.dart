@@ -1,11 +1,15 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:classapp/ui/locator.dart';
 import 'package:classapp/ui/router.dart';
 import 'package:classapp/ui/screens/authscreens/login_screen.dart';
 import 'package:classapp/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  setuplocator();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -27,5 +31,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

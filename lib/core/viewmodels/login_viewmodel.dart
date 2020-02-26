@@ -12,7 +12,7 @@ class LoginViewmodel extends BaseViewmodel {
       locator<AuthenticationService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
-  Future signUp(
+  Future login(
       {@required String email,
       @required String password,
       @required String errorMessage,

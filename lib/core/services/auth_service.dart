@@ -14,8 +14,8 @@ class AuthenticationService {
       var authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       return authResult.user != null;
-    } catch (e) {
-      return e.toString();
+    } catch(e) {
+      
     }
   }
 
@@ -27,7 +27,7 @@ class AuthenticationService {
           email: email, password: password);
       return authResult.user != null;
     } catch (e) {
-      return e.toString();
+      
     }
   }
 
