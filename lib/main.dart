@@ -1,4 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:classapp/ui/router.dart';
+import 'package:classapp/ui/screens/authscreens/login_screen.dart';
 import 'package:classapp/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +22,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Montserrat',
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
       ),
-      home: MyHomePage(title: 'classapp'),
+      home: LoginView(),
+      onGenerateRoute: generateRoute,
     );
   }
 }
