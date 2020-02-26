@@ -26,7 +26,7 @@ class LoginViewmodel extends BaseViewmodel {
 
     if (result is bool) {
       if (result) {
-        _navigationService.navigateTo(HomeViewRoute);
+        _navigationService.navigateReplacmentTo(HomeViewRoute);
       } else {
         showSnackbar(context, errorMessage);
       }

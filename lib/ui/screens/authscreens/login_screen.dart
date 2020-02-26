@@ -1,7 +1,6 @@
 import 'package:classapp/core/viewmodels/login_viewmodel.dart';
 import 'package:classapp/ui/locator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:provider_architecture/provider_architecture.dart';
 
@@ -80,12 +79,18 @@ class _LoginViewState extends State<LoginView> {
                     child: Padding(
                         padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
                         child: RaisedButton(
-                          onPressed: () {
-                            model.login(
-                                email: _email,
-                                password: _password,
-                                errorMessage: "Failed to login",
-                                context: context);
+                          onPressed: () async {
+                            final _formState = _formKey.currentState;
+                            if (_formState.validate()) {
+                              _formState.save();
+                              try {
+                                await model.login(
+                                    email: _email,
+                                    password: _password,
+                                    errorMessage: "Failed to login",
+                                    context: context);
+                              } catch (e) {}
+                            }
                           },
                           child: Text("Sign In"),
                         )),

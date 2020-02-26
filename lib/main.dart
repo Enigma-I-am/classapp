@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:classapp/core/services/navigation_service.dart';
 import 'package:classapp/ui/locator.dart';
 import 'package:classapp/ui/router.dart';
 import 'package:classapp/ui/screens/authscreens/login_screen.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      navigatorKey: locator<NavigationService>().navigationKey,
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.lightBlue[800],
