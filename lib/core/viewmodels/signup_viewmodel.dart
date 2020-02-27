@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:classapp/constants/route_names.dart';
 import 'package:classapp/core/models/user_model.dart';
 import 'package:classapp/core/services/auth_service.dart';
@@ -54,6 +52,8 @@ class SignUpViewmodel extends BaseViewmodel {
       }
     }
   }
+
+  
 
   void showSnackbar(BuildContext context, String errorMessage) {
     final scaffold = Scaffold.of(context);

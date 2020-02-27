@@ -1,3 +1,4 @@
+import 'package:classapp/constants/route_names.dart';
 import 'package:classapp/core/viewmodels/login_viewmodel.dart';
 import 'package:classapp/ui/locator.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,10 @@ class _LoginViewState extends State<LoginView> {
     return ViewModelProvider<LoginViewmodel>.withConsumer(
       viewModel: loginviewmodel,
       builder: (context, model, child) => Scaffold(
+        appBar: AppBar(
+          title : Text("LogIn")
+         
+        ),
         body: Form(
           key: _formKey,
           child: Center(
@@ -108,7 +113,7 @@ class _LoginViewState extends State<LoginView> {
                                 color: Colors.blue,
                                 fontStyle: FontStyle.italic),
                           ),
-                          onTap: null,
+                          onTap: () => model.routeToSignUpPage(SignUpViewRoute),
                         )
                       ],
                     ),

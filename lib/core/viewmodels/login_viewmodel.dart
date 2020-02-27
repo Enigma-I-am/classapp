@@ -33,6 +33,10 @@ class LoginViewmodel extends BaseViewmodel {
     }
   }
 
+  void routeToSignUpPage(String routeName) {
+    _navigationService.navigateTo(routeName);
+  }
+
   void showSnackbar(BuildContext context, String errorMessage) {
     final scaffold = Scaffold.of(context);
     scaffold.showSnackBar(SnackBar(content: Text(errorMessage)));
