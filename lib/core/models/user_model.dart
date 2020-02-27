@@ -1,26 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 
 class UserModel {
   String firstName;
   String lastName;
+  String email;
   int level;
-  String password;
+  bool isadmin;
+  // String password;
 
   final DocumentReference reference;
 
   UserModel(
-      {this.firstName,
-      this.lastName,
-      this.level,
-      this.password,
+      {@required this.firstName,
+      @required this.lastName,
+      @required this.email,
+      @required this.level,
+      @required this.isadmin,
       this.reference});
 
   // fromMap Map<dynamic, dynamic> map, {this.reference}
   UserModel.fromMap(Map<dynamic, dynamic> map, {this.reference})
       : firstName = map["firstName"],
         lastName = map["lastName"],
+        email = map["email"],
         level = map["level"],
-        password = map["password"];
+        isadmin = map["isadmin"];
 
   // fromSnapshot DocumentSnapshot snapshot
   UserModel.fromSnapshot(DocumentSnapshot snapshot)
@@ -31,11 +36,10 @@ class UserModel {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data["firstName"] = firstName;
     data["lastName"] = lastName;
+    data["email"] = email;
     data["level"] = level;
-    data["password"] = password;
+    data["isadmin"] = isadmin;
 
     return data;
   }
 }
-
-final UserModel user = UserModel();
