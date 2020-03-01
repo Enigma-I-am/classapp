@@ -19,12 +19,13 @@ class LoginViewmodel extends BaseViewmodel {
       @required BuildContext context}) async {
     setBusy(true);
 
-    var result = await _authenticationService.signUpUser(
+    var result = await _authenticationService.logInUser(
         email: email, password: password);
 
     setBusy(false);
 
     if (result is bool) {
+      print(result);
       if (result) {
         _navigationService.navigateReplacmentTo(HomeViewRoute);
       } else {

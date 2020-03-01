@@ -11,7 +11,39 @@ class SignUpViewmodel extends BaseViewmodel {
       locator<AuthenticationService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
-  UserModel addUserDetails(String firstName, String lastName, String email,
+  Future signUp(
+      String firstName,
+      String lastName,
+      String email,
+      int level,
+      bool isadmin,
+      String password,
+      String errorMessage,
+      BuildContext context) async {
+    setBusy(true);
+
+    var result = await _authenticationService.createUser(
+        email: email,
+        password: password,
+        path: "Users",
+        data: _addUserDetails(firstName, lastName, email, level, isadmin)
+            .toJson());
+
+    setBusy(false);
+
+    if (result is bool) {
+      print(result);
+      if (result) {
+        _navigationService.navigateReplacmentTo(HomeViewRoute);
+      } else {
+        // _showSnackbar(context, errorMessage);
+        
+      }
+
+    }
+  }
+
+  UserModel _addUserDetails(String firstName, String lastName, String email,
       int level, bool isadmin) {
     final UserModel user = UserModel(
       firstName: firstName,
@@ -24,39 +56,8 @@ class SignUpViewmodel extends BaseViewmodel {
     return user;
   }
 
-  Future signUp(
-      String firstName,
-      String lastName,
-      String email,
-      int level,
-      bool isadmin,
-      String password,
-      String errorMessage,
-      BuildContext context) async {
-    setBusy(true);
-
-    var result = await _authenticationService
-        .logInUser(email: email, password: password)
-        .then((onvalue) async {
-      await _authenticationService.saveUserDetails("Users",
-          addUserDetails(firstName, lastName, email, level, isadmin).toJson());
-    });
-
-    setBusy(false);
-
-    if (result is bool) {
-      if (result) {
-        _navigationService.navigateTo(HomeViewRoute);
-      } else {
-        showSnackbar(context, errorMessage);
-      }
-    }
-  }
-
-  
-
-  void showSnackbar(BuildContext context, String errorMessage) {
-    final scaffold = Scaffold.of(context);
-    scaffold.showSnackBar(SnackBar(content: Text(errorMessage)));
-  }
+  // void _showSnackbar(BuildContext context, String errorMessage) {
+  //   final scaffold = Scaffold.of(context);
+  //   scaffold.showSnackBar(SnackBar(content: Text(errorMessage)));
+  // }
 }

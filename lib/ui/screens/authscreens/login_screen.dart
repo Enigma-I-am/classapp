@@ -2,6 +2,7 @@ import 'package:classapp/constants/route_names.dart';
 import 'package:classapp/core/viewmodels/login_viewmodel.dart';
 import 'package:classapp/ui/locator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider_architecture/provider_architecture.dart';
 
@@ -19,10 +20,7 @@ class _LoginViewState extends State<LoginView> {
     return ViewModelProvider<LoginViewmodel>.withConsumer(
       viewModel: loginviewmodel,
       builder: (context, model, child) => Scaffold(
-        appBar: AppBar(
-          title : Text("LogIn")
-         
-        ),
+        appBar: AppBar(title: Text("LogIn")),
         body: Form(
           key: _formKey,
           child: Center(
@@ -94,7 +92,9 @@ class _LoginViewState extends State<LoginView> {
                                     password: _password,
                                     errorMessage: "Failed to login",
                                     context: context);
-                              } catch (e) {}
+                              } catch (e) {
+                                print(e.toString());
+                              }
                             }
                           },
                           child: Text("Sign In"),
@@ -105,13 +105,22 @@ class _LoginViewState extends State<LoginView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Don't Have an account??..."),
+                        Text(
+                          "Don't Have an account??...",
+                          style: GoogleFonts.poppins(
+                            textStyle: Theme.of(context).textTheme.display1,
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
                         InkWell(
                           child: Text(
                             " SignUp!!!",
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontStyle: FontStyle.italic),
+                            style: GoogleFonts.poppins(
+                              textStyle: Theme.of(context).textTheme.display1,
+                              fontSize: 18,
+                              color: Colors.blueAccent,
+                            ),
                           ),
                           onTap: () => model.routeToSignUpPage(SignUpViewRoute),
                         )
