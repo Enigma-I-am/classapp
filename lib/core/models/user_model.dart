@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 
 class UserModel {
+  String id;
   String firstName;
   String lastName;
   String email;
@@ -12,7 +13,8 @@ class UserModel {
   final DocumentReference reference;
 
   UserModel(
-      {@required this.firstName,
+      {@required id,
+      @required this.firstName,
       @required this.lastName,
       @required this.email,
       @required this.level,
@@ -21,7 +23,8 @@ class UserModel {
 
   // fromMap Map<dynamic, dynamic> map, {this.reference}
   UserModel.fromMap(Map<dynamic, dynamic> map, {this.reference})
-      : firstName = map["firstName"],
+      : id = map["id"],
+        firstName = map["firstName"],
         lastName = map["lastName"],
         email = map["email"],
         level = map["level"],
@@ -34,6 +37,7 @@ class UserModel {
   // Map<String, dynamic> toJson()
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
+    data["id"] = id;
     data["firstName"] = firstName;
     data["lastName"] = lastName;
     data["email"] = email;

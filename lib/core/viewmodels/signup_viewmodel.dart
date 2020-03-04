@@ -23,11 +23,14 @@ class SignUpViewmodel extends BaseViewmodel {
     setBusy(true);
 
     var result = await _authenticationService.createUser(
-        email: email,
-        password: password,
-        path: "Users",
-        data: _addUserDetails(firstName, lastName, email, level, isadmin)
-            .toJson());
+      firstName: firstName,
+      lastName: lastName,
+      level: level,
+      isadmin: isadmin,
+      email: email,
+      password: password,
+      path: "Users",
+    );
 
     setBusy(false);
 
@@ -37,23 +40,9 @@ class SignUpViewmodel extends BaseViewmodel {
         _navigationService.navigateReplacmentTo(HomeViewRoute);
       } else {
         // _showSnackbar(context, errorMessage);
-        
+
       }
-
     }
-  }
-
-  UserModel _addUserDetails(String firstName, String lastName, String email,
-      int level, bool isadmin) {
-    final UserModel user = UserModel(
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      level: level,
-      isadmin: isadmin,
-    );
-
-    return user;
   }
 
   // void _showSnackbar(BuildContext context, String errorMessage) {
