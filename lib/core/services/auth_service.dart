@@ -9,10 +9,13 @@ class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   UserModel _currentUser;
 
+  UserModel get currentUser => _currentUser;
+
   final firestoreService = locator<FirestoreServcie>();
 // Check if user is logged in
   Future<bool> isUserLoggedIn() async {
     var user = await _auth.currentUser();
+    await getUserDetails(user);
     return user != null;
   }
 
@@ -51,13 +54,21 @@ class AuthenticationService {
     try {
       var authResult = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-
+        await getUserDetails(authResult.user);
       return authResult.user != null;
     } catch (e) {
       return e;
     }
   }
 
-// Save User details
+// get User details
+
+  Future getUserDetails(FirebaseUser user)async{
+
+    if(user != null){
+      _currentUser = await firestoreService.getUser(user.uid);
+    }
+
+  }
 
 }

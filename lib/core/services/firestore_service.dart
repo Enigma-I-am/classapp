@@ -14,6 +14,16 @@ class FirestoreServcie {
     }
   }
 
+  Future getUser(String uid) async {
+    try {
+      _ref = _db.collection("Users");
+      var userData = await _ref.document(uid).get();
+      return UserModel.fromMap(userData.data);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   void addToCalendar() {
     print("add an event to your calendar");
   }
