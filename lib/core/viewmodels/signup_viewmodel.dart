@@ -1,5 +1,5 @@
 import 'package:classapp/constants/route_names.dart';
-import 'package:classapp/core/models/user_model.dart';
+
 import 'package:classapp/core/services/auth_service.dart';
 import 'package:classapp/core/services/navigation_service.dart';
 import 'package:classapp/core/viewmodels/baseviewmodel.dart';
@@ -37,10 +37,7 @@ class SignUpViewmodel extends BaseViewmodel {
     if (result is bool) {
       print(result);
       if (result) {
-        _navigationService.navigateReplacmentTo(HomeViewRoute);
-      } else {
-        // _showSnackbar(context, errorMessage);
-
+        _navigationService.navigateReplacmentToAndRemoveHistory(HomeViewRoute);
       }
     }
   }

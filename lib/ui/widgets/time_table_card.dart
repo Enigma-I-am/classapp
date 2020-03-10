@@ -1,10 +1,22 @@
 import 'package:classapp/Utils/generate_random_colors.dart';
+import 'package:classapp/core/models/timetable_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TimeTableCard extends StatelessWidget {
+class TimeTableCard extends StatefulWidget {
+  final DocumentSnapshot snapshot;
+  TimeTableCard({@required this.snapshot});
+
+  @override
+  _TimeTableCardState createState() => _TimeTableCardState();
+}
+
+class _TimeTableCardState extends State<TimeTableCard> {
   @override
   Widget build(BuildContext context) {
+    var tableData = TimeTableModel.fromSnapshot(widget.snapshot);
+
     return Container(
       height: MediaQuery.of(context).size.height * 0.24,
       width: MediaQuery.of(context).size.width,
@@ -23,7 +35,7 @@ class TimeTableCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Electric Machines",
+                        tableData.CourseTitle,
                         style: GoogleFonts.poppins(
                             textStyle: Theme.of(context).textTheme.display1,
                             fontSize: 18,
@@ -31,7 +43,7 @@ class TimeTableCard extends StatelessWidget {
                             color: Colors.white),
                       ),
                       Text(
-                        "EEE 311",
+                        tableData.CourseCode,
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -41,24 +53,23 @@ class TimeTableCard extends StatelessWidget {
                 Spacer(),
                 Icon(Icons.offline_pin),
                 Text(" ")
-
               ]),
               Spacer(),
               Row(children: <Widget>[
                 Row(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(left:4.0, right: 4.0),
+                      padding: const EdgeInsets.only(left: 4.0, right: 4.0),
                       child: Icon(Icons.alarm),
                     ),
                     Column(
                       children: <Widget>[
-                        Text("10-12AM",
+                        Text(tableData.Starttime,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white)),
-                        Text("2 hours",
+                        Text(tableData.Endtime,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
@@ -74,10 +85,10 @@ class TimeTableCard extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(left:4.0, right: 4.0),
+                          padding: const EdgeInsets.only(left: 4.0, right: 4.0),
                           child: Icon(Icons.location_on),
                         ),
-                        Text("EE 3rd yr class",
+                        Text(tableData.Location,
                             style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,

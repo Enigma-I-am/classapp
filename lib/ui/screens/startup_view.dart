@@ -1,10 +1,12 @@
+
 import 'package:classapp/core/viewmodels/startup_viewmodel.dart';
 import 'package:classapp/ui/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 
 class StartupView extends StatelessWidget {
-  var startUpViewmodel = locator<StartUpViewmodel>();
+  
+  final startUpViewmodel = locator<StartUpViewmodel>();
 
   @override
   Widget build(BuildContext context) {

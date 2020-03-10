@@ -1,7 +1,6 @@
 import 'package:classapp/core/models/user_model.dart';
 import 'package:classapp/core/services/firestore_service.dart';
 import 'package:classapp/ui/locator.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
@@ -41,7 +40,7 @@ class AuthenticationService {
           level: level,
           isadmin: isadmin);
         await firestoreService.addUserToUserCollection(path, _currentUser);
-
+        await getUserDetails(authResult.user);
       return authResult.user != null;
     } catch (error) {
       print(error.toString());

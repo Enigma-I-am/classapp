@@ -2,7 +2,7 @@ import 'package:classapp/core/viewmodels/signup_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider_architecture/provider_architecture.dart';
-import 'package:dropdownfield/dropdownfield.dart';
+
 import '../../locator.dart';
 
 class SignupView extends StatefulWidget {

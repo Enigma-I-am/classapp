@@ -27,19 +27,13 @@ class LoginViewmodel extends BaseViewmodel {
     if (result is bool) {
       print(result);
       if (result) {
-        _navigationService.navigateReplacmentTo(HomeViewRoute);
-      } else {
-        showSnackbar(context, errorMessage);
-      }
+        _navigationService.navigateReplacmentToAndRemoveHistory(HomeViewRoute);
+      } 
     }
   }
 
   void routeToSignUpPage(String routeName) {
-    _navigationService.navigateTo(routeName);
+    _navigationService.navigateReplacmentTo(routeName);
   }
 
-  void showSnackbar(BuildContext context, String errorMessage) {
-    final scaffold = Scaffold.of(context);
-    scaffold.showSnackBar(SnackBar(content: Text(errorMessage)));
-  }
 }

@@ -1,3 +1,4 @@
+import 'package:classapp/constants/route_names.dart';
 import 'package:flutter/material.dart';
 
 class NavigationService {
@@ -17,5 +18,11 @@ class NavigationService {
   Future<dynamic> navigateReplacmentTo(String routeName, {dynamic arguments}) {
     return _navigationKey.currentState
         .pushReplacementNamed(routeName, arguments: arguments);
+  }
+
+  Future<dynamic> navigateReplacmentToAndRemoveHistory(String routeName,
+      {dynamic arguments}) {
+    return _navigationKey.currentState
+        .pushNamedAndRemoveUntil(HomeViewRoute, (Route route) => false);
   }
 }

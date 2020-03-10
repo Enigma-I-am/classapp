@@ -1,3 +1,6 @@
+import 'dart:async';
+
+
 import 'package:classapp/core/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -24,19 +27,29 @@ class FirestoreServcie {
     }
   }
 
-  void addToCalendar() {
-    print("add an event to your calendar");
+  Stream<QuerySnapshot> getMondayAsStream() {
+    _ref = _db.collection("monday");
+    print(_ref.snapshots().first);
+    return _ref.snapshots();
   }
 
-  void getTimetable() {
-    print("get class time table");
+  Stream<QuerySnapshot> getTuesdayAsStream() {
+    _ref = _db.collection("tuesday");
+    return _ref.snapshots();
   }
 
-  void getEvents4infobox() {
-    print("get latest class event");
+  Stream<QuerySnapshot> getWednesdayAsStream() {
+    _ref = _db.collection("wednesday");
+    return _ref.snapshots();
   }
 
-  void getCourseMaterials() {
-    print("Get PDFs and notes for courses");
+  Stream<QuerySnapshot> getThursdayAsStream(){
+    _ref = _db.collection("thursday");
+    return _ref.snapshots();
+  }
+
+  Stream<QuerySnapshot> getFridayAsStream(){
+    _ref = _db.collection("friday");
+    return _ref.snapshots();
   }
 }

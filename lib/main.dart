@@ -1,7 +1,7 @@
+
 import 'package:classapp/core/services/navigation_service.dart';
 import 'package:classapp/ui/locator.dart';
 import 'package:classapp/ui/router.dart';
-import 'package:classapp/ui/screens/authscreens/login_screen.dart';
 import 'package:classapp/ui/screens/startup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
