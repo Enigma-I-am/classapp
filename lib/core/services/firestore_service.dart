@@ -27,6 +27,11 @@ class FirestoreServcie {
     }
   }
 
+  Stream<QuerySnapshot> getNotificationsAsStream(){
+    _ref = _db.collection("notification");
+    return _ref.snapshots();
+  }
+
   Stream<QuerySnapshot> getMondayAsStream() {
     _ref = _db.collection("monday");
     print(_ref.snapshots().first);
